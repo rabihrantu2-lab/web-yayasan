@@ -1,0 +1,207 @@
+---
+const namaYayasan = "Archa edu Academy";
+---
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{namaYayasan}</title>
+  <script is:inline>
+    // Cek preferensi tema dari localStorage sebelum halaman dimuat
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="/">{namaYayasan}</a>
+    </div>
+    <nav>
+  <a href="/tentang">Tentang</a>
+  <a href="/layanan">Fitur</a>
+  <a href="/harga">Harga</a>
+  <a href="/alur">Alur Kerja</a>
+  <a href="/testimoni">Testimoni</a>
+  <a href="/blog">Blog</a>  <!-- Tambahkan baris ini -->
+  <a href="/faq">FAQ</a>
+  <a href="/kontak">Kontak</a>
+</nav>
+    <div class="header-actions">
+      <button id="theme-toggle" aria-label="Toggle Dark Mode">
+        <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a href="https://wa.me/62895323665266" class="cta-wa" target="_blank">Konsultasi Gratis</a>
+    </div>
+  </header>
+
+  <slot />
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>{namaYayasan}</h3>
+        <p>Bimbingan skripsi & tesis yang jelas dan terarah.</p>
+      </div>
+      <div>
+        <h3>Layanan</h3>
+        <a href="/layanan/skripsi">Skripsi & Tesis</a>
+        <a href="/layanan/analisis-data">Analisis Data</a>
+        <a href="/layanan/publikasi">Publikasi Jurnal</a>
+      </div>
+      <div>
+        <h3>Bantuan</h3>
+        <a href="/faq">FAQ</a>
+        <a href="/kebijakan-privasi">Kebijakan Privasi</a>
+        <a href="/syarat-ketentuan">Syarat & Ketentuan</a>
+      </div>
+      <div>
+        <h3>Kontak</h3>
+        <p>Perumahan Bukit Sakinah Blok C18 no 18, Kab.bogor, Kec.Leuwiliang</p>
+        <p>Rabihrantu2@gmail.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 {namaYayasan}. Hak Cipta Dilindungi.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Logika Toggle Tema
+    const themeToggle = document.getElementById('theme-toggle');
+    const iconSun = document.getElementById('icon-sun');
+    const iconMoon = document.getElementById('icon-moon');
+
+    function updateIcons(isDark) {
+      if (isDark) {
+        iconSun.style.display = 'none';
+        iconMoon.style.display = 'block';
+      } else {
+        iconSun.style.display = 'block';
+        iconMoon.style.display = 'none';
+      }
+    }
+
+    // Set ikon awal
+    updateIcons(document.documentElement.classList.contains('dark'));
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateIcons(isDark);
+    });
+  </script>
+</body>
+</html>
+
+<style is:global>
+  /* VARIABEL WARNA - MODE SIANG (BIRU LANGIT) */
+  :root {
+    --bg-color: #f0f9ff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --header-bg: #38bdf8;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --accent-color: #0ea5e9;
+    --accent-hover: #0284c7;
+    --footer-bg: #e0f2fe;
+  }
+
+  /* VARIABEL WARNA - MODE MALAM */
+  html.dark {
+    --bg-color: #0f172a;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --header-bg: #1e293b;
+    --card-bg: #1e293b;
+    --border-color: #334155;
+    --accent-color: #38bdf8;
+    --accent-hover: #0ea5e9;
+    --footer-bg: #020617;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  /* Header */
+  header {
+    background-color: var(--header-bg);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    gap: 1rem;
+    transition: background-color 0.3s;
+  }
+
+  .logo a { color: white; font-weight: bold; font-size: 1.5rem; text-decoration: none; }
+  nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  nav a { color: white; text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+  
+  .header-actions { display: flex; align-items: center; gap: 1rem; }
+  
+  #theme-toggle {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+  }
+  #theme-toggle:hover { background: rgba(255,255,255,0.3); }
+  #icon-moon { display: none; }
+
+  .cta-wa {
+    background-color: white;
+    color: var(--accent-hover);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+  }
+  .cta-wa:hover { background-color: #e0f2fe; }
+
+  /* Footer */
+  footer {
+    background-color: var(--footer-bg);
+    padding: 3rem 2rem 1rem;
+    margin-top: auto;
+    color: var(--text-muted);
+    transition: background-color 0.3s;
+  }
+  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+  .footer-grid h3 { color: var(--accent-color); margin-bottom: 1rem; }
+  .footer-grid a { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 0.5rem; }
+  .footer-grid a:hover { color: var(--accent-color); }
+  .footer-bottom { text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-color); font-size: 0.9rem; }
+
+  @media (max-width: 768px) {
+    header { flex-direction: column; text-align: center; }
+    nav { justify-content: center; }
+    .header-actions { width: 100%; justify-content: center; }
+  }
+</style>

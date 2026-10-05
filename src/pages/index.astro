@@ -1,0 +1,180 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const fitur = [
+  { nama: "Buat Jurnal Scopus", desc: "Draf artikel IMRAD berstandar jurnal Scopus (Q1-Q4), Bahasa Inggris, dengan data lapangan.", badge: "HOT" },
+  { nama: "Studio Skripsi", desc: "Tulis skripsi, tesis, & disertasi bab per bab. Setiap sub-bab terurut dan konsisten.", badge: "HOT" },
+  { nama: "Parafrase Otomatis", desc: "Parafrase berstruktur agar aman dari kemiripan, tetap menjaga sitasi & makna." },
+  { nama: "Referensi Jurnal + Verifikasi", desc: "Dapatkan referensi resmi yang valid dan terverifikasi sitasinya." },
+  { nama: "Lab Revisi", desc: "Perbaiki tata bahasa, ejaan, format sitasi, dan konsistensi penulisan." },
+  { nama: "Generate PPT Sidang", desc: "Buat slide presentasi sidang yang rapi dan profesional secara otomatis." }
+];
+
+const alur = [
+  { no: "01", title: "Isi data sederhana", desc: "Cukup tulis topik dan pilih metode. Tidak perlu paham prompt engineering." },
+  { no: "02", title: "Sistem menyusun di belakang layar", desc: "Sistem memilih prompt yang tepat, menarik referensi, dan menerapkan format kampusmu." },
+  { no: "03", title: "Tinjau, edit, ekspor", desc: "Terima, edit, atau buat ulang setiap blok. Lalu ekspor ke Word siap submit." }
+];
+
+const harga = [
+  { nama: "Bulanan", harga: "Rp 109.000", periode: "/bulan", fitur: ["100 + 10 bonus kredit", "~3 skripsi lengkap", "Simulasi Sidang", "Cek Turnitin"] },
+  { nama: "3 Bulan", harga: "Rp 299.000", periode: "/3 bulan", fitur: ["300 + 65 bonus kredit", "~11 skripsi lengkap", "Simulasi Sidang", "Cek Turnitin", "Grup WA konsultasi"], populer: true },
+  { nama: "Semester (6 Bln)", harga: "Rp 599.000", periode: "/6 bulan", fitur: ["600 + 150 bonus kredit", "~24 skripsi lengkap", "Simulasi Sidang", "Cek Turnitin", "Grup WA konsultasi"] },
+  { nama: "Tahunan", harga: "Rp 999.000", periode: "/tahun", fitur: ["1200 + 300 bonus kredit", "~48 skripsi lengkap", "Simulasi Sidang", "Cek Turnitin", "Grup WA konsultasi"] }
+];
+---
+
+<Layout>
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Riset lebih cepat,<br /><span class="highlight">skripsi lebih mudah.</span></h1>
+        <p>Kami membantu mahasiswa dan peneliti menyusun skripsi, tesis, disertasi, hingga artikel ilmiah dengan referensi valid dan dapat diverifikasi.</p>
+        <div class="hero-buttons">
+          <a href="https://wa.me/6281234567890" class="btn-primary" target="_blank">Mulai Gratis &rarr;</a>
+          <a href="/alur" class="btn-secondary">Lihat Cara Kerja</a>
+        </div>
+        <p class="hero-note">Langsung masuk ruang kerjamu — tanpa daftar, tanpa login.</p>
+      </div>
+      <div class="hero-image">
+        <!-- Placeholder untuk screenshot dashboard, bisa diganti dengan gambar asli nanti -->
+        <div class="mockup-dashboard">
+          <div class="mockup-header">Mockup Dashboard</div>
+          <div class="mockup-body">
+            <div class="mockup-sidebar"></div>
+            <div class="mockup-content"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FITUR SECTION -->
+    <section class="section-container">
+      <h2>Semua yang kamu butuhkan untuk menulis ilmiah</h2>
+      <div class="grid-fitur">
+        {fitur.map((item) => (
+          <div class="card-fitur">
+            {item.badge && <span class="badge">{item.badge}</span>}
+            <h3>{item.nama}</h3>
+            <p>{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ALUR KERJA SECTION -->
+    <section class="section-container bg-alt">
+      <div class="section-header">
+        <span class="pill">Cara Kerja</span>
+        <h2>Tiga langkah, tanpa ribet</h2>
+        <p>Kamu fokus pada ide. Sistem yang mengurus prompt, referensi, dan format.</p>
+      </div>
+      <div class="grid-alur">
+        {alur.map((item) => (
+          <div class="card-alur">
+            <span class="nomor">{item.no}</span>
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- HARGA SECTION -->
+    <section class="section-container">
+      <div class="section-header">
+        <span class="pill">Harga</span>
+        <h2>Mulai gratis, upgrade saat butuh</h2>
+        <p>Tanpa auto-charge. Kamu yang pegang kendali penuh.</p>
+      </div>
+      <div class="grid-harga">
+        {harga.map((item) => (
+          <div class={`card-harga ${item.populer ? 'populer' : ''}`}>
+            {item.populer && <span class="label-populer">★ Populer</span>}
+            <h3>{item.nama}</h3>
+            <div class="harga-nominal">{item.harga} <span>{item.periode}</span></div>
+            <ul>
+              {item.fitur.map((f) => <li>✓ {f}</li>)}
+            </ul>
+            <a href="https://wa.me/6281234567890" class="btn-harga" target="_blank">Pilih Paket</a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA AKHIR -->
+    <section class="cta-akhir">
+      <h2>Masih Bingung Mulai dari Mana?</h2>
+      <p>Konsultasi pertama gratis. Ceritakan saja kondisimu, kami bantu petakan langkah berikutnya.</p>
+      <a href="https://wa.me/6281234567890" class="btn-primary" target="_blank">Chat WhatsApp Sekarang</a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* Styling khusus halaman Home yang mendukung Dark Mode */
+  .hero { display: flex; align-items: center; justify-content: space-between; padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; gap: 3rem; flex-wrap: wrap; }
+  .hero-text { flex: 1; min-width: 300px; }
+  .hero-text h1 { font-size: 3rem; line-height: 1.1; color: var(--text-main); margin-bottom: 1.5rem; }
+  .hero-text .highlight { color: var(--accent-color); }
+  .hero-text p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; }
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-note { font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem; }
+  
+  .btn-primary { background-color: var(--accent-color); color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; transition: background 0.3s; }
+  .btn-primary:hover { background-color: var(--accent-hover); }
+  .btn-secondary { background-color: transparent; color: var(--accent-color); padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; border: 2px solid var(--accent-color); display: inline-block; }
+  .btn-secondary:hover { background-color: rgba(56, 189, 248, 0.1); }
+
+  .hero-image { flex: 1; min-width: 300px; }
+  .mockup-dashboard { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; height: 350px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+  .mockup-header { background: var(--border-color); padding: 10px; font-size: 0.8rem; text-align: center; color: var(--text-muted); }
+  .mockup-body { display: flex; flex: 1; }
+  .mockup-sidebar { width: 30%; background: var(--bg-color); border-right: 1px solid var(--border-color); }
+  .mockup-content { flex: 1; background: var(--card-bg); }
+
+  .section-container { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .bg-alt { background-color: var(--card-bg); border-radius: 16px; margin: 2rem auto; max-width: 1200px; }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-header h2 { font-size: 2rem; color: var(--text-main); margin-bottom: 0.5rem; }
+  .section-header p { color: var(--text-muted); }
+  .pill { background-color: var(--accent-color); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-bottom: 1rem; }
+
+  .grid-fitur { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .card-fitur { background: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color); position: relative; transition: transform 0.2s, box-shadow 0.2s; }
+  .card-fitur:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+  .card-fitur h3 { color: var(--text-main); margin-top: 0; margin-bottom: 1rem; }
+  .card-fitur p { color: var(--text-muted); line-height: 1.6; margin: 0; }
+  .badge { position: absolute; top: 1rem; right: 1rem; background: #ef4444; color: white; font-size: 0.7rem; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+
+  .grid-alur { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+  .card-alur { background: var(--bg-color); padding: 2rem; border-radius: 12px; }
+  .card-alur .nomor { font-size: 2.5rem; font-weight: bold; color: var(--accent-color); opacity: 0.5; display: block; margin-bottom: 1rem; }
+  .card-alur h3 { color: var(--text-main); margin-top: 0; }
+  .card-alur p { color: var(--text-muted); line-height: 1.6; }
+
+  .grid-harga { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; align-items: start; }
+  .card-harga { background: var(--card-bg); border: 1px solid var(--border-color); padding: 2rem; border-radius: 16px; text-align: center; position: relative; }
+  .card-harga.populer { border: 2px solid var(--accent-color); transform: scale(1.05); }
+  .label-populer { background: var(--accent-color); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+  .card-harga h3 { color: var(--text-muted); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 0; }
+  .harga-nominal { font-size: 2rem; font-weight: bold; color: var(--text-main); margin-bottom: 1.5rem; }
+  .harga-nominal span { font-size: 0.9rem; font-weight: normal; color: var(--text-muted); }
+  .card-harga ul { list-style: none; padding: 0; text-align: left; margin-bottom: 2rem; }
+  .card-harga li { padding: 0.5rem 0; color: var(--text-muted); font-size: 0.95rem; border-bottom: 1px solid var(--border-color); }
+  .card-harga li:last-child { border-bottom: none; }
+  .btn-harga { display: block; width: 100%; padding: 12px; background: var(--accent-color); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; box-sizing: border-box; transition: background 0.3s; }
+  .btn-harga:hover { background: var(--accent-hover); }
+
+  .cta-akhir { text-align: center; padding: 5rem 2rem; background-color: var(--card-bg); border-top: 1px solid var(--border-color); }
+  .cta-akhir h2 { color: var(--text-main); margin-bottom: 1rem; }
+  .cta-akhir p { color: var(--text-muted); margin-bottom: 2rem; }
+
+  @media (max-width: 768px) {
+    .hero { flex-direction: column; text-align: center; padding: 3rem 1rem; }
+    .hero-buttons { justify-content: center; }
+    .hero-text h1 { font-size: 2.2rem; }
+    .card-harga.populer { transform: scale(1); }
+  }
+</style>
