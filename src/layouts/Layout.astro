@@ -1,5 +1,5 @@
 ---
-const namaYayasan = "Archa edu Academy";
+const namaYayasan = "Archa Edu Academy";
 ---
 
 <!DOCTYPE html>
@@ -21,16 +21,24 @@ const namaYayasan = "Archa edu Academy";
     <div class="logo">
       <a href="/">{namaYayasan}</a>
     </div>
-    <nav>
-  <a href="/tentang">Tentang</a>
-  <a href="/layanan">Fitur</a>
-  <a href="/harga">Harga</a>
-  <a href="/alur">Alur Kerja</a>
-  <a href="/testimoni">Testimoni</a>
-  <a href="/blog">Blog</a>  <!-- Tambahkan baris ini -->
-  <a href="/faq">FAQ</a>
-  <a href="/kontak">Kontak</a>
-</nav>
+
+    <!-- Tombol Hamburger untuk HP -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+
+    <!-- Menu Navigasi -->
+    <nav id="nav-menu" class="nav-links">
+      <a href="/tentang">Tentang</a>
+      <a href="/layanan">Fitur</a>
+      <a href="/harga">Harga</a>
+      <a href="/alur">Alur Kerja</a>
+      <a href="/testimoni">Testimoni</a>
+      <a href="/blog">Blog</a>
+      <a href="/faq">FAQ</a>
+      <a href="/kontak">Kontak</a>
+    </nav>
+
     <div class="header-actions">
       <button id="theme-toggle" aria-label="Toggle Dark Mode">
         <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
@@ -72,7 +80,7 @@ const namaYayasan = "Archa edu Academy";
   </footer>
 
   <script>
-    // Logika Toggle Tema
+    // Logika Toggle Tema (Siang/Malam)
     const themeToggle = document.getElementById('theme-toggle');
     const iconSun = document.getElementById('icon-sun');
     const iconMoon = document.getElementById('icon-moon');
@@ -86,14 +94,27 @@ const namaYayasan = "Archa edu Academy";
         iconMoon.style.display = 'none';
       }
     }
-
-    // Set ikon awal
     updateIcons(document.documentElement.classList.contains('dark'));
 
     themeToggle.addEventListener('click', () => {
       const isDark = document.documentElement.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
       updateIcons(isDark);
+    });
+
+    // Logika Toggle Menu Hamburger (untuk HP)
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Tutup menu otomatis saat link diklik (di HP)
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
     });
   </script>
 </body>
@@ -153,8 +174,9 @@ const namaYayasan = "Archa edu Academy";
   }
 
   .logo a { color: white; font-weight: bold; font-size: 1.5rem; text-decoration: none; }
-  nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  nav a { color: white; text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+  
+  .nav-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .nav-links a { color: white; text-decoration: none; font-weight: 500; font-size: 0.95rem; }
   
   .header-actions { display: flex; align-items: center; gap: 1rem; }
   
@@ -199,9 +221,65 @@ const namaYayasan = "Archa edu Academy";
   .footer-grid a:hover { color: var(--accent-color); }
   .footer-bottom { text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-color); font-size: 0.9rem; }
 
+  /* Styling untuk tombol hamburger (disembunyikan di PC) */
+  .menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  /* Tampilan Responsif untuk HP */
   @media (max-width: 768px) {
-    header { flex-direction: column; text-align: center; }
-    nav { justify-content: center; }
-    .header-actions { width: 100%; justify-content: center; }
+    header {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+
+    .menu-toggle {
+      display: block;
+      order: 2; /* Posisi tombol hamburger */
+    }
+
+    .logo {
+      order: 1;
+    }
+
+    .header-actions {
+      order: 3;
+      width: 100%;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    /* Menu Navigasi disembunyikan, muncul saat diklik */
+    .nav-links {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      background-color: var(--header-bg);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      order: 4;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+      display: flex;
+    }
+
+    .nav-links a {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+    .nav-links a:last-child {
+      border-bottom: none;
+    }
   }
 </style>
