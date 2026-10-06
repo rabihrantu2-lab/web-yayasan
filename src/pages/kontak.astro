@@ -1,13 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// Variabel data kontak
+const title = "Hubungi Kami - Archa Edu Academy";
+const description = "Konsultasi gratis via WhatsApp. Balas maksimal 1x24 jam. Alamat, email, dan jam operasional.";
+
 const email = "Rabihrantu2@gmail.com";
-const waNomor = "62895323665266"; // Format internasional tanpa tanda +
+const waNomor = "62895323665266";
 const alamat = "Perumahan Bukit Sakinah Blok C18 No. 18, Desa Barengkok, Kec. Leuwiliang, Kab. Bogor";
 ---
 
-<Layout>
+<Layout title={title} description={description}>
   <main>
     <!-- HERO SECTION -->
     <section class="hero-kontak">
@@ -130,7 +132,6 @@ const alamat = "Perumahan Bukit Sakinah Blok C18 No. 18, Desa Barengkok, Kec. Le
 </Layout>
 
 <script>
-  // Form submission: kirim ke WhatsApp dengan pesan terisi otomatis
   const form = document.getElementById('form-kontak');
   const waNomor = "62895323665266";
 
@@ -143,7 +144,6 @@ const alamat = "Perumahan Bukit Sakinah Blok C18 No. 18, Desa Barengkok, Kec. Le
     const layanan = document.getElementById('layanan').value;
     const pesan = document.getElementById('pesan').value;
 
-    // Format pesan WhatsApp (menggunakan %0A untuk baris baru)
     const text = `Halo Archa Edu Academy,%0A%0A` +
                  `Nama: ${nama}%0A` +
                  `Email: ${email}%0A` +
@@ -200,7 +200,6 @@ const alamat = "Perumahan Bukit Sakinah Blok C18 No. 18, Desa Barengkok, Kec. Le
   .info-item h3 { margin: 0 0 0.5rem; color: var(--text-main); font-size: 1rem; }
   .info-item p { margin: 0 0 0.5rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
   
-  /* Gaya tautan yang aman, tidak jadi kotak biru */
   .link-kontak { color: var(--accent-color); text-decoration: none; font-weight: bold; display: inline-block; margin-top: 0.5rem; }
   .link-kontak:hover { text-decoration: underline; }
 
@@ -217,6 +216,11 @@ const alamat = "Perumahan Bukit Sakinah Blok C18 No. 18, Desa Barengkok, Kec. Le
   /* Responsive */
   @media (max-width: 900px) {
     .grid-kontak { grid-template-columns: 1fr; gap: 2rem; }
-    .hero-kontak h1 { font-size: 2rem; }
+    .hero-kontak h1 { font-size: 1.8rem; }
+    .hero-kontak p { font-size: 1rem; }
+    .section-container { padding: 2rem 1rem 3rem; }
+    .form-box, .info-box { padding: 1.5rem; }
+    .cta-akhir { padding: 3rem 1rem; }
+    .cta-akhir h2 { font-size: 1.5rem; }
   }
 </style>

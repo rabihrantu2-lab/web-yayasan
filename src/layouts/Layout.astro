@@ -1,4 +1,8 @@
 ---
+const { 
+  title = "Archa Edu Academy - Bimbingan Skripsi & Tesis Terpercaya",
+  description = "Jasa konsultasi skripsi, tesis, analisis data, dan publikasi jurnal. Konsultasi pertama gratis, harga transparan, konsultan berpengalaman."
+} = Astro.props;
 const namaYayasan = "Archa Edu Academy";
 ---
 
@@ -7,9 +11,17 @@ const namaYayasan = "Archa Edu Academy";
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{namaYayasan}</title>
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  
+  <!-- SEO: Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="id_ID" />
+  <meta name="twitter:card" content="summary_large_image" />
+  
   <script is:inline>
-    // Cek preferensi tema dari localStorage sebelum halaman dimuat
     const theme = localStorage.getItem('theme');
     if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark');
@@ -22,12 +34,10 @@ const namaYayasan = "Archa Edu Academy";
       <a href="/">{namaYayasan}</a>
     </div>
 
-    <!-- Tombol Hamburger untuk HP -->
     <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Menu">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
     </button>
 
-    <!-- Menu Navigasi -->
     <nav id="nav-menu" class="nav-links">
       <a href="/tentang">Tentang</a>
       <a href="/layanan">Fitur</a>
@@ -58,9 +68,9 @@ const namaYayasan = "Archa Edu Academy";
       </div>
       <div>
         <h3>Layanan</h3>
-        <a href="/layanan/skripsi">Skripsi & Tesis</a>
-        <a href="/layanan/analisis-data">Analisis Data</a>
-        <a href="/layanan/publikasi">Publikasi Jurnal</a>
+        <a href="/layanan">Skripsi & Tesis</a>
+        <a href="/layanan">Analisis Data</a>
+        <a href="/layanan">Publikasi Jurnal</a>
       </div>
       <div>
         <h3>Bantuan</h3>
@@ -70,7 +80,7 @@ const namaYayasan = "Archa Edu Academy";
       </div>
       <div>
         <h3>Kontak</h3>
-        <p>Perumahan Bukit Sakinah Blok C18 no 18, Kab.bogor, Kec.Leuwiliang</p>
+        <p>Perumahan Bukit Sakinah Blok C18 No. 18, Kab. Bogor, Kec. Leuwiliang</p>
         <p>Rabihrantu2@gmail.com</p>
       </div>
     </div>
@@ -80,7 +90,6 @@ const namaYayasan = "Archa Edu Academy";
   </footer>
 
   <script>
-    // Logika Toggle Tema (Siang/Malam)
     const themeToggle = document.getElementById('theme-toggle');
     const iconSun = document.getElementById('icon-sun');
     const iconMoon = document.getElementById('icon-moon');
@@ -102,7 +111,6 @@ const namaYayasan = "Archa Edu Academy";
       updateIcons(isDark);
     });
 
-    // Logika Toggle Menu Hamburger (untuk HP)
     const menuToggle = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
 
@@ -110,7 +118,6 @@ const namaYayasan = "Archa Edu Academy";
       navMenu.classList.toggle('active');
     });
 
-    // Tutup menu otomatis saat link diklik (di HP)
     navMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('active');
@@ -121,7 +128,6 @@ const namaYayasan = "Archa Edu Academy";
 </html>
 
 <style is:global>
-  /* VARIABEL WARNA - MODE SIANG (BIRU LANGIT) */
   :root {
     --bg-color: #f0f9ff;
     --text-main: #0f172a;
@@ -134,7 +140,6 @@ const namaYayasan = "Archa Edu Academy";
     --footer-bg: #e0f2fe;
   }
 
-  /* VARIABEL WARNA - MODE MALAM */
   html.dark {
     --bg-color: #0f172a;
     --text-main: #f8fafc;
@@ -159,7 +164,6 @@ const namaYayasan = "Archa Edu Academy";
     transition: background-color 0.3s, color 0.3s;
   }
 
-  /* Header */
   header {
     background-color: var(--header-bg);
     color: white;
@@ -174,10 +178,8 @@ const namaYayasan = "Archa Edu Academy";
   }
 
   .logo a { color: white; font-weight: bold; font-size: 1.5rem; text-decoration: none; }
-  
   .nav-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
   .nav-links a { color: white; text-decoration: none; font-weight: 500; font-size: 0.95rem; }
-  
   .header-actions { display: flex; align-items: center; gap: 1rem; }
   
   #theme-toggle {
@@ -207,7 +209,6 @@ const namaYayasan = "Archa Edu Academy";
   }
   .cta-wa:hover { background-color: #e0f2fe; }
 
-  /* Footer */
   footer {
     background-color: var(--footer-bg);
     padding: 3rem 2rem 1rem;
@@ -221,7 +222,6 @@ const namaYayasan = "Archa Edu Academy";
   .footer-grid a:hover { color: var(--accent-color); }
   .footer-bottom { text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-color); font-size: 0.9rem; }
 
-  /* Styling untuk tombol hamburger (disembunyikan di PC) */
   .menu-toggle {
     display: none;
     background: transparent;
@@ -231,7 +231,6 @@ const namaYayasan = "Archa Edu Academy";
     padding: 0.5rem;
   }
 
-  /* Tampilan Responsif untuk HP */
   @media (max-width: 768px) {
     header {
       flex-direction: row;
@@ -239,24 +238,9 @@ const namaYayasan = "Archa Edu Academy";
       justify-content: space-between;
       padding: 1rem;
     }
-
-    .menu-toggle {
-      display: block;
-      order: 2; /* Posisi tombol hamburger */
-    }
-
-    .logo {
-      order: 1;
-    }
-
-    .header-actions {
-      order: 3;
-      width: 100%;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-
-    /* Menu Navigasi disembunyikan, muncul saat diklik */
+    .menu-toggle { display: block; order: 2; }
+    .logo { order: 1; }
+    .header-actions { order: 3; width: 100%; justify-content: center; margin-top: 1rem; }
     .nav-links {
       display: none;
       width: 100%;
@@ -268,18 +252,12 @@ const namaYayasan = "Archa Edu Academy";
       order: 4;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-
-    .nav-links.active {
-      display: flex;
-    }
-
+    .nav-links.active { display: flex; }
     .nav-links a {
       padding: 0.75rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.1);
       text-align: center;
     }
-    .nav-links a:last-child {
-      border-bottom: none;
-    }
+    .nav-links a:last-child { border-bottom: none; }
   }
 </style>

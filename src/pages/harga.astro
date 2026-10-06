@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+const title = "Harga Paket Bimbingan Skripsi - Archa Edu Academy";
+const description = "Harga transparan paket Basic, Reguler, dan Premium. DP 50%, tidak ada biaya tersembunyi. Mulai Rp 500.000.";
+
 const waNomor = "62895323665266";
 
 const paket = [
@@ -73,7 +76,7 @@ const faqHarga = [
 ];
 ---
 
-<Layout>
+<Layout title={title} description={description}>
   <main>
     <!-- HERO SECTION -->
     <section class="hero-harga">
@@ -327,11 +330,21 @@ const faqHarga = [
 
   /* Responsive */
   @media (max-width: 768px) {
+    .hero-harga h1 { font-size: 1.8rem; }
+    .hero-harga p { font-size: 1rem; }
+    .section-container { padding: 2rem 1rem 3rem; }
+    .bg-alt { padding: 2rem 1rem; border-radius: 12px; }
+    .grid-harga { grid-template-columns: 1fr; gap: 1.5rem; }
+    .card-harga { padding: 2rem 1.5rem; }
     .card-harga.populer { transform: scale(1); }
     .card-harga.populer:hover { transform: translateY(-5px); }
-    .hero-harga h1 { font-size: 2rem; }
+    .harga-nominal { font-size: 1.8rem; }
+    .section-header h2 { font-size: 1.6rem; }
     .trust-badge { gap: 0.5rem; }
-    .trust-badge span { padding: 8px 16px; font-size: 0.8rem; }
-    .proses-steps { font-size: 0.8rem; }
+    .trust-badge span { padding: 8px 14px; font-size: 0.8rem; }
+    .proses-steps { font-size: 0.8rem; gap: 0.3rem; }
+    .proses-steps span { padding: 4px 10px; }
+    .cta-akhir { padding: 3rem 1rem; }
+    .cta-akhir h2 { font-size: 1.5rem; }
   }
 </style>
